@@ -38,7 +38,7 @@ int main() {
     int maxCosto=0,maxBeneficio=0,maxFalsos=0;
     bool hayCombinacion=false,primero;
     //restricciones
-    int P=100000,B=190,F=4;
+    int P=50000,B=110,F=4;
 
     for(int i=0;i<opciones;i++) {
         costoParcial=0,beneficioParcial=0,falsosParcial=0;
@@ -50,8 +50,7 @@ int main() {
                 falsosParcial+=controles[j].falsos_neg;
             }
         }
-        if (costoParcial<=P and beneficioParcial>=B and
-            falsosParcial<=F  ) {
+        if (costoParcial<=P and beneficioParcial>=B and falsosParcial<=F  ) {
             maxCosto=costoParcial;
             maxBeneficio=beneficioParcial;
             maxFalsos=falsosParcial;
