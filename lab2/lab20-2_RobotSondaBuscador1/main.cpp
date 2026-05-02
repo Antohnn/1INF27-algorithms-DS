@@ -22,7 +22,7 @@ int robotSonda(int x,int y,int tabla[N][M],int direccion,int modo) {
             contador=1;
             tabla[x][y]=-1;
         }
-        //avanzar
+        //buscar
         if (direccion == ARRIBA) {
             return contador+robotSonda(x-1,y,tabla,ARRIBA,BUSCAR);
         }else if (direccion == ABAJO) {
