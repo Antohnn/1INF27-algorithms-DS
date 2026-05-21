@@ -16,22 +16,14 @@ void ordenarLista(Lista &listaCuadrigas) {
     NodoLista *recorrido=listaCuadrigas.inicio;
     //recorro la lista
     while (recorrido) {
-        //defino un siguiente para tener un mejor manejo en este caso no es necesario
-        // NodoLista *siguiente=recorrido->siguiente;
-        //como se va a insertar en la lista par o impar segun encuentro no es necesario manejar anterior o siguiente
-        //por lo que puedo desvincular el nodo segun lo encuentro
-        //se desvincula el nodo actual de la lista
         NodoLista *siguiente=recorrido->siguiente;
         recorrido->siguiente=nullptr;
-        //valido si el id es par
+
         if (recorrido->elemento.id % 2==0) {
-            //si es par y no entro ningun par con aterioridad se incia la "lista" de pares
             if (iniPares==nullptr) {
                 iniPares=recorrido;
                 finPares=recorrido;
             }else {
-                //si ya habia algun par guardado se maneja el puntero finPares para apuntar al dato anterior al actual
-                // y se actualiza el pu
                 finPares->siguiente=recorrido;
                 finPares=recorrido;
             }
@@ -43,7 +35,6 @@ void ordenarLista(Lista &listaCuadrigas) {
                 finImpares->siguiente=recorrido;
                 finImpares=recorrido;
             }
-
         }
         recorrido=siguiente;
     }
