@@ -71,7 +71,7 @@ int main() {
                 int fin=inicio+duracion;
                 //validamos que la hora de inicio y fin no se salgan del rango establecido
                 if (inicio<8 or fin>17) {
-                    //si la hora de inicio es menor a 8 y el fin del turno pasa a las 17 horas entonces el cromo
+                    //si la hora de inicio es menor a 8 o el fin del turno pasa a las 17 horas entonces el cromo
                     //pasa a ser invalido y rompemo esa iteracion del for para entrar con otro cromo
                     valido=false;
                     break;
@@ -89,6 +89,7 @@ int main() {
                 }
                 //una vez hechas las validaciones podemos actualizar el valor del turno
                 turno=fin;
+                if (turno==13) turno=14;
 
                 //realizamos el conteo de cada alerta
 
