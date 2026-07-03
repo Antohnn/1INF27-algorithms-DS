@@ -1,0 +1,10 @@
+//
+// Created by ANTONIO on 30/06/2026.
+//
+
+#ifndef P2ELIMINARNODOSHIJOS_ARBOL_H
+#define P2ELIMINARNODOSHIJOS_ARBOL_H
+struct Arbol {
+    Arbol *raiz;
+};
+#endif //P2ELIMINARNODOSHIJOS_ARBOL_H
