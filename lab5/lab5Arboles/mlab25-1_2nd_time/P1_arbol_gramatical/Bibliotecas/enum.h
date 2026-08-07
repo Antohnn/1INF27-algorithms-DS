@@ -1,0 +1,16 @@
+//
+// Created by ANTONIO on 3/07/2026.
+//
+
+#ifndef P1_ARBOL_GRAMATICAL_ENUM_H
+#define P1_ARBOL_GRAMATICAL_ENUM_H
+enum Categoria {
+    ORACION=1,
+    PREDICADO=2,
+    SUJETO=3,
+    ARTICULO=4,
+    SUSTANTIVO=5,
+    VERBO=6,
+    DESCONOCIDO=7
+};
+#endif //P1_ARBOL_GRAMATICAL_ENUM_H

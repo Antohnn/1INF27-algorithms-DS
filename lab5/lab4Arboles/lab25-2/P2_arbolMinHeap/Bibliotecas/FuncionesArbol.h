@@ -5,10 +5,11 @@
 #ifndef P2_ARBOLMINHEAP_FUNCIONESARBOL_H
 #define P2_ARBOLMINHEAP_FUNCIONESARBOL_H
 
-NodoArbol *crearNodoArbol(ElementoArbol &elemento) ;
-void intercambiarDatos(NodoArbol *a,NodoArbol *b) ;
-void heapifyUp(NodoArbol *nodo) ;
-void insertarMinHeap(NodoArbol *&raiz,Cola &cola, ElementoArbol &elemento);
-void imprimirPorNiveles(NodoArbol *raiz);
+NodoHeap *crearNodoHeap(int dato) ;
+void intercambiarDatos(NodoHeap *a, NodoHeap *b) ;
+void heapifyUp(NodoHeap *nodo) ;
+void insertarMinHeap(NodoHeap *&raiz, Cola &colaPadres, int dato);
+void imprimirPorNiveles(NodoHeap *raiz);
+NodoHeap *buscarElementoDerecha(NodoHeap *raiz);
 
 #endif //P2_ARBOLMINHEAP_FUNCIONESARBOL_H

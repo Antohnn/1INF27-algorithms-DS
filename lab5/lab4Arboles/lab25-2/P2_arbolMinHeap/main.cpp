@@ -7,22 +7,23 @@
 using namespace std;
 
 int main() {
-    int A[6] = {3, 5, 7, 2, 8, 9};
-
-    NodoArbol *raiz = nullptr;
+    NodoHeap *heap = nullptr;
 
     Cola colaPadres;
     construirCola(colaPadres);
 
-    cout << "Insertando valores en el min-heap:" << endl;
+    insertarMinHeap(heap, colaPadres, 2);
+    insertarMinHeap(heap, colaPadres, 5);
+    insertarMinHeap(heap, colaPadres, 7);
+    insertarMinHeap(heap, colaPadres, 9);
+    insertarMinHeap(heap, colaPadres, 8);
+    insertarMinHeap(heap, colaPadres, 6);
+    insertarMinHeap(heap, colaPadres, 3);
 
-    for (int i = 0; i < 6; i++) {
-        ElementoArbol elemento{};
-        elemento.dato = A[i];
-        cout << "Insertar " << A[i] << ": ";
-        insertarMinHeap(raiz, colaPadres, elemento);
-        imprimirPorNiveles(raiz);
-    }
+    NodoHeap *minimo = buscarElementoDerecha(heap);
+
+    cout<<minimo->dato<<endl;
+
 
     return 0;
 }

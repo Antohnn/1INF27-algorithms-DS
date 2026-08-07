@@ -9,82 +9,69 @@ using namespace std;
 #include "FuncionesArbol.h"
 #include "FuncionesCola.h"
 
-NodoArbol *crearNodoArbol(ElementoArbol &elemento) {
-    NodoArbol *nuevo=new NodoArbol();
+NodoHeap *crearNodoHeap(int dato) {
+    NodoHeap *nuevo = new NodoHeap;
 
-    nuevo->elemento=elemento;
-    nuevo->izquierda=nullptr;
-    nuevo->derecha=nullptr;
-    nuevo->padre=nullptr;
+    nuevo->dato = dato;
+    nuevo->izquierda = nullptr;
+    nuevo->derecha = nullptr;
+    nuevo->padre = nullptr;
 
     return nuevo;
 }
-
-void intercambiarDatos(NodoArbol *a,NodoArbol *b) {
-    int aux=a->elemento.dato;
-    a->elemento.dato=b->elemento.dato;
-    b->elemento.dato=aux;
+void intercambiarDatos(NodoHeap *a, NodoHeap *b) {
+    int aux = a->dato;
+    a->dato = b->dato;
+    b->dato = aux;
 }
-void heapifyUp(NodoArbol *nodo) {
-
-    while (nodo->padre!=nullptr && nodo->elemento.dato<nodo->padre->elemento.dato) {
-        intercambiarDatos(nodo,nodo->padre);
-        nodo=nodo->padre;
+void heapifyUp(NodoHeap *nodo) {
+    while (nodo->padre != nullptr && nodo->dato < nodo->padre->dato) {
+        intercambiarDatos(nodo, nodo->padre);
+        nodo = nodo->padre;
     }
 }
+void insertarMinHeap(NodoHeap *&raiz, Cola &colaPadres, int dato) {
+    NodoHeap *nuevo = crearNodoHeap(dato);
 
-void insertarMinHeap(NodoArbol *&raiz,Cola &cola, ElementoArbol &elemento) {
-    NodoArbol *nuevo=crearNodoArbol(elemento);
-
-    if (raiz==nullptr) {
-        raiz=nuevo;
-        encolarNodoArbol(cola,nuevo);
+    if (raiz == nullptr) {
+        raiz = nuevo;
+        encolar(colaPadres, nuevo);
         return;
     }
-    ElementoCola frente=verFrente(cola);
-    NodoArbol *padre=frente.nodo;
 
-    if (padre->izquierda==nullptr) {
-        padre->izquierda=nuevo;
-        nuevo->padre=padre;
-    }else {
-        padre->derecha=nuevo;
-        nuevo->padre=padre;
+    NodoHeap *padre = verFrente(colaPadres);
 
-        desencolar(cola);
+    if (padre->izquierda == nullptr) {
+        padre->izquierda = nuevo;
+        nuevo->padre = padre;
+    } else {
+        padre->derecha = nuevo;
+        nuevo->padre = padre;
+
+        desencolar(colaPadres);
     }
 
-    encolarNodoArbol(cola,nuevo);
+    encolar(colaPadres, nuevo);
+
     heapifyUp(nuevo);
 }
-void imprimirPorNiveles(NodoArbol *raiz) {
-    /*
-     Forma de solucion:
-     Se recorre el arbol por niveles usando una cola auxiliar. Cada elemento
-     de la cola contiene un puntero al nodo del arbol que falta procesar.
-    */
 
-    if (raiz == nullptr) return;
-
+NodoHeap *buscarElementoDerecha(NodoHeap *raiz) {
     Cola cola;
     construirCola(cola);
 
-    encolarNodoArbol(cola, raiz);
-
+    NodoHeap *actual = nullptr;
+    encolar(cola,raiz);
     while (!esColaVacia(cola)) {
-        ElementoCola elemento = desencolar(cola);
-        NodoArbol *actual = elemento.nodo;
-
-        cout << actual->elemento.dato << " ";
+        actual=desencolar(cola);
 
         if (actual->izquierda != nullptr) {
-            encolarNodoArbol(cola, actual->izquierda);
+            encolar(cola,actual->izquierda);
         }
-
         if (actual->derecha != nullptr) {
-            encolarNodoArbol(cola, actual->derecha);
+            encolar(cola,actual->derecha);
         }
     }
 
-    cout << endl;
+    return actual;
 }
